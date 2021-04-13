@@ -2,42 +2,41 @@
 import model
 import csv
 
+
 """
 El controlador se encarga de mediar entre la vista y el modelo.
 """
-
-def initcatalog():
-    catalog = model.newCatalog()
+def cargardatosvideoslarge():
+    vfile = cf.data_dir + 'videos/videos-large.csv'
+    reader = csv.DictReader(open(vfile,encoding="utf-8"))
+    dict_list = []
+    for line in reader:
+        dict_list.append(dict(line))
+    return dict_list
+def cargarCategorias():
+    vfile = cf.data_dir + 'videos/category-id.csv'
+    reader = csv.DictReader(open(vfile,encoding="utf-8"))
+    cat = []
+    for line in reader:
+        cat.append(dict(line))
+    return cat
+def newCatalog():
+    catalog=model.newCatalog()
     return catalog
-#<<<<<<< HEAD
-def loaddata(catalog,Categoria):
-    cargardatosvideoslarge(catalog)
-    vfile = cf.data_dir + 'videos/videos-large.csv'
-    input_file = csv.DictReader(open(vfile, encoding='utf-8'))
-    for video in input_file:
-        model.addVideoDetails(catalog, video)
-def cargardatosvideoslarge(catalog):
-    vfile = cf.data_dir + 'videos/videos-large.csv'
-    input_file = csv.DictReader(open(vfile, encoding='utf-8'))
-    for videol in input_file:
-        model.addVideoDetails(catalog, videol)
-"""def requerimiento1(category_name,country,n,catalog,Categoria):
-    return model.requerimiento1(category_name,country,n,catalog,Categoria)
+def primer_requerimiento(categoria,catalogo,country,categoria_buscar,n):
+    return model.primer_requerimiento(cargarCategorias_1(),cargar_videos(),country,categoria_buscar,n)
 
-def requerimiento2(catalog,country):
-    return model.requerimiento2(catalog,country)
+def segundo_requerimiento(catalog,country):
+    return model.segundo_requerimiento(cargar_videos(),country)
 
-def requerimiento3(catalog,Categoria,categoria):
-    return model.requerimiento3(catalog,Categoria,categoria)
-    
-def requerimiento4(catalog,tag,country):
-    return model.requerimiento4(catalog,tag,country)"""
+def tercer_requerimiento(categoria,catalogo,category_name):
+    return model.tercer_requerimiento(cargarCategorias_1(),cargar_videos(),category_name)
 
+def cuarto_requerimiento(catalogo,tag_a_buscar,n,country):
+    return model.cuarto_requerimiento(cargar_videos(),tag_a_buscar,n,country)
 
-# Inicialización del Catálogo de libros
+def cargar_videos():
+    return model.cargardatosvideoslarge()
 
-# Funciones para la carga de datos
-
-# Funciones de ordenamiento
-
-# Funciones de consulta sobre el catálogo
+def cargarCategorias_1():
+    return model.cargarCategorias()
